@@ -59,6 +59,7 @@ function shuffle(deck) {
 
   while (currentIndex !== 0) {
     randomIndex = Math.floor(Math.random() * currentIndex);
+    // Use a temporary value to randomize their index value without affecting the shuffled deck array.
     temporaryValue = shuffledDeck[currentIndex]; 
     shuffledDeck[currentIndex] = shuffledDeck[randomIndex]; 
     shuffledDeck[randomIndex] = temporaryValue; 
