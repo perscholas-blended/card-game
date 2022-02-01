@@ -10,6 +10,126 @@ function getInput(prompt) {
 
 // YOUR CODE STARTS HERE!!
 
+//----------Create Deck
+function buildDeck(){
+  const suits = ['hearts', 'clubs', 'spades', 'diamonds'];
+  const ranks = ['Ace','2','3','4','5','6','7','8','9','10','jack','Queen','King'];
+  const deck = [];
+  for(let i = 0; i < ranks.length; i++){
+    for(let j = 0; j < suits.length; j++){
+      deck.push({suit:suits[j], rank:ranks[i], value:[i]});
+    }
+  }
+  return deck;
+}
+const unshuffledDeck = buildDeck();
+
+//------------#2 Shuffle DecK
+function shuffle(deck){
+  let shuffledDeck = deck;
+  let currentIndex = deck.length - 1;
+  let temporaryValue;
+  let randomIndex;
+  let result;
+  while(currentIndex !== 0){
+    randomIndex =  Math.round((Math.random() * currentIndex));
+    temporaryValue = shuffledDeck[currentIndex]; // temp store index # for the last card.  TEMP = KING OF DIAMONDS
+    shuffledDeck[currentIndex] = shuffledDeck[randomIndex]; //last card now = random card. RANDOM CARD
+    shuffledDeck[randomIndex] = temporaryValue; //---random card now = last car last Card is randomize. RANDOM CARD NOW EQUALLED TO LAST CARD
+    currentIndex --;
+  }
+  return shuffledDeck;
+}
+const nowShuffledDeck = shuffle(unshuffledDeck);
+
+//------#3 Greet Player
+function greet(){
+let deck = nowShuffledDeck;
+let score = 0;
+let name = getInput('Hello, what is your name?');
+let response = getInput(`Hello ${name}, lets Play!`);
+let rank = getInput('Enter a rank.');
+let suit = getInput('Enter suit');
+let guessAnswer = guess(rank, suit);
+
+while(score < 5 && score < deck.length){
+if (guessAnswer == true){
+    score ++;
+    letResponse2 = getInput(`Great Job, you got it right! Your score is now ${score}. Is the next card higher(h) or lower(l)?`);
+    }else{
+      console.log('You did not get a point, try again');
+      break;
+    }
+  }
+}
+// greet();
+
+//-----#4 Compare
+function compare(card1, card2){
+  return card2.value - card1.value;
+}
+
+//-----#5 Guess
+function guess(myRank, mySuit){
+  let randomGen = Math.floor(Math.random() * 51);
+  let randomGen2 = Math.floor(Math.random() * 51);
+  let finalAnswer;
+  let input;
+  let currentCard = `${nowShuffledDeck[randomGen].rank} of ${nowShuffledDeck[randomGen].suit}`;
+  let nexttCard = `${nowShuffledDeck[randomGen2].rank} of ${nowShuffledDeck[randomGen2].suit}`;
+  let higherOrLower = compare(nowShuffledDeck[randomGen], nowShuffledDeck[randomGen2]);
+
+  if(myRank === nowShuffledDeck[0].rank && mySuit === nowShuffledDeck[0].suit){
+  finalAnswer = true;
+  }
+
+  console.log(`you guessed the ${myRank} of ${mySuit}`);
+  input = getInput(`The current card is the ${currentCard}. Is the next card higher(h) or lower(l)?`);
+
+
+
+  if(input === 'l' && higherOrLower < 0){
+      console.log(`You're right,the ${nexttCard} is lower!`);
+      finalAnswer = true;
+      return true;
+  }
+  
+  if(input === 'l' && higherOrLower > 0){
+    console.log(`Sorry,${nexttCard} is not lower!`);
+    finalAnswer = false;
+    return;
+  }
+  
+  if(input === 'h' && higherOrLower > 0){
+      console.log(`You're right, the ${nexttCard} is higher!`);
+      finalAnswer = true;
+      return true;
+  }
+  
+  if(input === 'h' && higherOrLower < 0){
+      console.log(`Sorry, ${nexttCard} is not higher!`);
+      finalAnswer = false;
+      return;
+  }
+  
+  if(input !== 'l'|| input!== 'h'){
+    console.log(`You have to enter (h) or (l).  You have no point this round. Good-Bye.`);
+    finalAnswer = false;
+    return false;
+   }
+   return finalAnswer;
+  }
+
+//---#6 Play Game
+function playGame(){
+  let deck = nowShuffledDeck;
+  greet();
+  let score = 0;
+  let currentCard = deck.pop();
+}
+playGame();
+
+
 // STEP ONE - Building A Deck.
 
 //buildDeck.push and position array
