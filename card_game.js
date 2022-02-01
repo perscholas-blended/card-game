@@ -128,7 +128,7 @@ console(`Your answer: ${input} has been stored`);
 let nuCard = card1[i,j]
 if ( input > nuCard){
  return input;
-} else if (input > nuCard){co
+} else if (input > nuCard){
   return nuCard ? positive : negative;
 }
 else if ( input === nuCard){
