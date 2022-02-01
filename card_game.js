@@ -74,7 +74,7 @@ return shuffledDeck
 
 function greet(){
   const name = getInput("Welcome! What is your name?")
-  console.log("Welcome to this booty ass fucking game " + name)
+  console.log("Welcome to this fun game " + name)
   return name
 }
 // greet()
@@ -86,8 +86,8 @@ function greet(){
 function compare(card1, card2){
   return card1.value - card2.value
 }
-let card1={suit: "diamonds", rank: "2", value: 1};
-let card2={suit: "diamonds", rank: "4", value: 3};
+// let card1={suit: "diamonds", rank: "2", value: 1};
+// let card2={suit: "diamonds", rank: "4", value: 3};
 // console.log(compare(card1, card2))
 
 // STEP FIVE - Respond to User Guess
@@ -128,3 +128,24 @@ function guess(card1, card2){
 // 9. Close the conditional statement and assign nextCard to currentCard. You may have to write this as the type of variable that's always global...
 // 10. Close the while loop and use a ternary statement that checks if the length of the deck array has reached zero. If it has not, tell the user that they won. If it has reached zero, tell them that they're out of cards and they lost.
 // 11. Write a line of code to execute the playGame function.
+function playGame(){
+ const deck = shuffle(buildDeck())
+ const playerName = greet()
+ let score = 0
+
+ let currentCard = deck.pop()
+
+ while (score < 5 && score < deck.length){
+  let nextCard = deck.pop()
+  if (guess(currentCard, nextCard)){
+    score += 1
+    console.log("Congradulations! Your current score is " + score)
+  }
+  else {
+    console.log("You were wrong and thus get no points.")
+  }
+  currentCard = nextCard
+ }
+ (deck.length === 0) ? console.log("You're out of cards and you've lost... womp womp.") : console.log("You've won!")
+}
+playGame()
