@@ -90,8 +90,9 @@ function greet(){
 // 1. declare a function called compare that takes two cards as arguments
 // 2. return the value property of the first card minus the value property of the second card.
 function compare(card1,card2){ 
-  return card1-card2;
+  return card1.value - card2.value;
 }
+
 
 
 // STEP FIVE - Respond to User Guess
@@ -103,8 +104,8 @@ function compare(card1,card2){
 // 6. If input equals l, check and see if it's a positive number.
 // 7. If input doesn't equal h or l, tell the user that they need to guess either h or l and that they get no points for this round, then return false.
 
-function guess(yourcard1, yourcard2){
-  // console.log(`Rank ${rank}, Suit ${suit}`)  <-----  I CAN'T GET THIS PART TO WORK!!
+function guess(card1, card2){
+  // console.log(`Rank ${card1.rank}, Suit ${card2.suit}`)  <-----  I CAN'T GET THIS PART TO WORK!!
   
   let input = getInput("Will the next card be higher (h) or lower (l) than your current card");
 
