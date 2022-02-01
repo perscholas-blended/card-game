@@ -119,9 +119,6 @@ function guess(yourcard1, yourcard2){
   }
 
 }
-
-
-
 // STEP SIX - Let's play!
 // 1. declare a function called playGame
 // 2. declare a variable called deck (it's okay to reuse -- remember scope!) that takes the result of the shuffle function. Remember that the shuffle function needs to take the results one of our other functions as its argument...
@@ -134,8 +131,6 @@ function guess(yourcard1, yourcard2){
 // 9. Close the conditional statement and assign nextCard to currentCard. You may have to write this as the type of variable that's always global...
 // 10. Close the while loop and use a ternary statement that checks if the length of the deck array has reached zero. If it has not, tell the user that they won. If it has reached zero, tell them that they're out of cards and they lost.
 // 11. Write a line of code to execute the playGame function.
-
-
 function playGame(deck1){
   let deck = shuffle(deck1);
   let playerName = greet();
@@ -156,9 +151,7 @@ function playGame(deck1){
     currentCard = nextCard;
 
      deck.length != 0 ? (message = 'You won') : (message = 'You lose');
-
   }
 }
 playGame(deck)
-
-/* Unfortunately, the game is not working properly. im sure the problem is somewhere in step 4 or 5 */
+/* Unfortunately, the game is not working properly. The problem is somewhere in step 4 or 5 */
