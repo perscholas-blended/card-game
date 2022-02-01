@@ -22,8 +22,6 @@ function getInput(prompt) {
 // HINT: The result of step 6 is that each card will be an object inside of the deck array, for example [{suit: "diamonds", rank: "A", value: 0}, {suit: "diamonds", rank: "2", value: 1},...{etc}]. For example, if we wanted to organize the players and teams of the NBA with index numbers, we could write: nba.push({player: players[i], team: teams[n], index: i})
 // 7. After your loops, return deck, which should now return an array full of card objects if you were to run buildDeck().
 
-
-
 function buildDeck() {
   const suits = ["diamonds", "spades", "hearts", "clubs"];
   const ranks = ['ace', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'jack', 'queen', 'king'];
@@ -56,7 +54,7 @@ buildDeck(suits, ranks);
 // 10. Review the code from steps 7,8, and 9, and leave a comment explaining what you believe those lines of code are doing as they swap assignments of values between them.
 // 11. Finally, close the while loop and return "shuffledDeck". You should now be able to run shuffle(buildDeck()) in node and see your shuffled deck of cards.
 
-function shuffle(){
+function shuffle(deck){
   const shuffledDeck = deck;
   let currentIndex = deck.length;
   let temporaryValue;
@@ -74,9 +72,8 @@ function shuffle(){
   return shuffledDeck;
   }
   
-  shuffle(deck, shuffledDeck);
+  shuffle(deck);
   
-
 // STEP THREE - Greeting the player
 // 1. Declare a function called greet()
 // 2. Inside that function, declare a variable called "name" and use "getInput()" to welcome the user to the game, ask for their name, and assign their answer.
@@ -85,7 +82,6 @@ function shuffle(){
 // 5. Done.
 
 function greet(){
-
   const name = getInput("What's your name?");
   console.log(`Welcome to the Card Game. ${name}`);
   console.log(`${name}`);
@@ -107,7 +103,6 @@ function compare(card1, card2)
 
 compare(card1, card2);
 
-
 // STEP FIVE - Respond to User Guess
 // 1. declare a function called guess that takes two cards as arguments
 // 2. console.log the rank and suit of the current card
@@ -117,11 +112,9 @@ compare(card1, card2);
 // 6. If input equals l, check and see if it's a positive number.
 // 7. If input doesn't equal h or l, tell the user that they need to guess either h or l and that they get no points for this round, then return false.
 
-function guess(card1, card2)
-{
+function guess(card1, card2){
   console.log(card1[i,j], card2[i,j]);
 
-  
 const input = getInput(`Will the next card will be higher or lower than ${card1[i,j]}`);
 console(`Your answer: ${input} has been stored`);
 
@@ -151,10 +144,9 @@ guess(card1, card2);
 // 10. Close the while loop and use a ternary statement that checks if the length of the deck array has reached zero. If it has not, tell the user that they won. If it has reached zero, tell them that they're out of cards and they lost.
 // 11. Write a line of code to execute the playGame function.
 
-
 function playGame(){
   const deck = shuffledDeck;
-  let playerName = name;
+  let playerName = name; // Not sure why name variable is deprecated
   let score = 0;
   let currentCard = deck.pop();
   while (score < 5 &&  score < deck.length) {
