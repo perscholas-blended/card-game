@@ -90,7 +90,7 @@ const compare=(currentCard,nextCard)=>{
 
 const guess=(currentCard,nextCard)=> {
   console.log(currentCard.rank, currentCard.suit) //2. console.log the rank and suit of the current card
-  console.log(nextCard.rank, nextCard.suit)
+  //console.log(nextCard.rank, nextCard.suit)
   const input = getInput('think the next card will be higher (h) or lower (l) than current card')
   if (input == "h"){ 
     return compare(currentCard,nextCard) < 0 }
