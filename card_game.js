@@ -157,4 +157,4 @@ function playGame(){
   
 }
 playGame()
-/* Unfortunately, the game is not working properly. The problem is somewhere in step 4 or 5 */
+// Fixed the proble in step 2
