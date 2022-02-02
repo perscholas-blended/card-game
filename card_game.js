@@ -36,7 +36,7 @@ function buildDeck(){
   return deck;
 }
 let deck = buildDeck();
-
+// console.log(deck)
 
 
 
@@ -61,15 +61,16 @@ function shuffle(deck){
   while(currentIndex != 0){
     randomIndex = Math.floor(Math.random()*currentIndex);
     temporaryValue = shuffledDeck[currentIndex];// adds unshuffuled deck to temporary 
-    shuffledDeck[currentIndex]= shuffledDeck // shuffles the deck
-    shuffledDeck[randomIndex] = temporaryValue; currentIndex --; // sets the shuffled deck to temporaryvalue then repeats the process
+    shuffledDeck[currentIndex]= shuffledDeck[randomIndex] // shuffles the deck
+    shuffledDeck[randomIndex] = temporaryValue; // sets the shuffled deck to temporaryvalue 
+    currentIndex -= 1; 
   }
   return shuffledDeck;
 }
 let shuffled =shuffle(deck)// shuffled Deck
 
-let card1 = shuffled.pop(); //current card #1
-let card2 = shuffled.pop();// current card #2
+console.log('###########')
+console.log(shuffled)
 
 
 // STEP THREE - Greeting the player
@@ -105,18 +106,19 @@ function compare(card1,card2){
 // 7. If input doesn't equal h or l, tell the user that they need to guess either h or l and that they get no points for this round, then return false.
 
 function guess(card1, card2){
-  // console.log(`Rank ${card1.rank}, Suit ${card2.suit}`)  <-----  I CAN'T GET THIS PART TO WORK!!
+  console.log(card1.Rank, card2.Suit)
   
   let input = getInput("Will the next card be higher (h) or lower (l) than your current card");
 
   if(input == 'h'){
-    return compare() < 0;
+    return compare(card1,card2) < 0;
   }
   else if(input == 'l'){
-    return compare() > 0;
+    return compare(card1,card2) > 0;
   }
   else{
-    console.log('guess if the card is higher (h) or lower (l). No points for you!')
+    console.log('guess if the card is higher (h) or lower (l). No points for you!');
+    return false;
   }
 
 }
@@ -132,8 +134,8 @@ function guess(card1, card2){
 // 9. Close the conditional statement and assign nextCard to currentCard. You may have to write this as the type of variable that's always global...
 // 10. Close the while loop and use a ternary statement that checks if the length of the deck array has reached zero. If it has not, tell the user that they won. If it has reached zero, tell them that they're out of cards and they lost.
 // 11. Write a line of code to execute the playGame function.
-function playGame(deck1){
-  let deck = shuffle(deck1);
+function playGame(){
+  let deck = shuffle(buildDeck());
   let playerName = greet();
   let score = 0;
   let currentCard = deck.pop();
@@ -141,7 +143,7 @@ function playGame(deck1){
   while(score < 5 && score < deck.length){
     let nextCard = deck.pop();
 
-    if(guess() == true){
+    if(guess(currentCard, nextCard) == true){
       score ++;
       console.log(`You got it right!! Your current score is ${score}`); 
     }
@@ -150,9 +152,9 @@ function playGame(deck1){
       console.log(`wrong!! Your current score is ${score}`);
     }
     currentCard = nextCard;
-
-     deck.length != 0 ? (message = 'You won') : (message = 'You lose');
   }
+     (deck.length != 0) ? console.log('Winner!. you just got lucky') : console.log( "Git gud loser");
+  
 }
-playGame(deck)
+playGame()
 /* Unfortunately, the game is not working properly. The problem is somewhere in step 4 or 5 */
